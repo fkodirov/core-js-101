@@ -50,7 +50,7 @@ function getComposition(f, g) {
 function getPowerFunction(exponent) {
   // throw new Error('Not implemented');
   return function a(x) {
-    return Math.pow(x, exponent);
+    return x ** exponent;
   };
 }
 
@@ -68,12 +68,22 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
+function getPolynom(...args) {
   // throw new Error('Not implemented');
   return (x) => {
-    if (arguments.length == 3) return y = arguments[0] * Math.pow(x, 2) + arguments[1] * x + arguments[2];
-    if (arguments.length == 2) return y = arguments[0] * x + arguments[1];
-    if (arguments.length == 1) return y = arguments[0];
+    let y;
+    if (arguments.length === 3) {
+      y = args[0] * x ** 2 + args[1] * x + args[2];
+      return y;
+    }
+    if (arguments.length === 2) {
+      y = args[0] * x + args[1];
+      return y;
+    }
+    if (arguments.length === 1) {
+      [y] = args;
+      return y;
+    }
     return null;
   };
 }
@@ -97,7 +107,7 @@ function memoize(func) {
   // throw new Error('Not implemented');
   const cache = {};
   return (n) => {
-    if (cache[n] != undefined) {
+    if (cache[n] !== undefined) {
       return cache[n];
     }
     const result = func(n);

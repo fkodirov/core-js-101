@@ -249,9 +249,12 @@ function toArrayOfSquares(arr) {
  */
 function getMovingSum(arr) {
   // throw new Error('Not implemented');
-  const array = [];
-  arr.reduce((a, b, i) => array[i] = a + b, 0);
-  return array;
+  let sum = 0;
+  function s(e) {
+    sum += e;
+    return sum;
+  }
+  return arr.map((e) => s(e));
 }
 
 /**
@@ -329,7 +332,7 @@ function get3TopItems(arr) {
 function getPositivesCount(arr) {
   // throw new Error('Not implemented');
   const r = arr.filter((e) => e > 0 && typeof e === 'number');
-  return r != '' ? r.length : 0;
+  return r !== '' ? r.length : 0;
 }
 
 /**
@@ -456,7 +459,7 @@ function sortCitiesArray(arr) {
     if (a.country < b.country) {
       return -1;
     }
-    if (a.country == b.country) {
+    if (a.country === b.country) {
       if (a.city > b.city) {
         return 1;
       }
@@ -581,7 +584,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return Array.from(arr, childrenSelector).join().split(',').map((e) => (isFinite(e) ? Number(e) : e));
+  return Array.from(arr, childrenSelector).join().split(',').map((e) => (e * 1 === Number(e) ? Number(e) : e));
   // throw new Error('Not implemented');
 }
 
@@ -624,7 +627,15 @@ function getElementByIndexes(arr, indexes) {
  */
 function swapHeadAndTail(arr) {
   // throw new Error('Not implemented');
-  return arr.length == 1 ? arr : arr.length % 2 == 0 ? arr.slice(-arr.length / 2).concat(arr.slice(0, arr.length / 2)) : arr.slice(-Math.trunc(arr.length / 2)).concat(arr[Math.trunc(arr.length / 2)]).concat(arr.slice(0, Math.trunc(arr.length / 2)));
+  // return arr.length == 1 ? arr : arr.length % 2 == 0
+  // ? arr.slice(-arr.length / 2).concat(arr.slice(0, arr.length / 2))
+  // : arr.slice(-Math.trunc(arr.length / 2)).concat(arr[Math.trunc(arr.length / 2)])
+  // .concat(arr.slice(0, Math.trunc(arr.length / 2)));
+  if (arr.length === 1) return arr;
+  return arr.length % 2 === 0
+    ? arr.slice(-arr.length / 2).concat(arr.slice(0, arr.length / 2))
+    : arr.slice(-Math.trunc(arr.length / 2)).concat(arr[Math.trunc(arr.length / 2)])
+      .concat(arr.slice(0, Math.trunc(arr.length / 2)));
 }
 
 

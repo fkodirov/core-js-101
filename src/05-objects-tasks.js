@@ -22,12 +22,12 @@
  */
 function Rectangle(width, height) {
   // throw new Error('Not implemented');
-  this.width = width;
-  this.height = height;
-  this.getArea = getArea;
   function getArea() {
     return width * height;
   }
+  this.width = width;
+  this.height = height;
+  this.getArea = getArea;
 }
 
 
@@ -121,7 +121,7 @@ function fromJSON(proto, json) {
  */
 
 const cssSelectorBuilder = {
-  element(value) {
+  element(/* value */) {
     throw new Error('Not implemented');
   },
 

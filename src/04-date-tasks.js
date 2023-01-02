@@ -58,7 +58,7 @@ function parseDataFromIso8601(value) {
 function isLeapYear(date) {
   // throw new Error('Not implemented');
   const year = date.getFullYear();
-  if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
+  if (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)) {
     return true;
   }
 
@@ -113,8 +113,9 @@ function angleBetweenClockHands(date) {
   const hAngle = (h * 30) + (m * 0.5);
   const angle = Math.abs(hAngle - mAngle);
   let degrees;
-  if (h > 18 && m < 30) { degrees = Math.min(angle, 360 - Math.abs(360 - angle)); } else { degrees = Math.min(angle, Math.abs(360 - angle)); }
-  return degrees / 180 * 3.141592653589793;
+  if (h > 18 && m < 30) degrees = Math.min(angle, 360 - Math.abs(360 - angle));
+  else degrees = Math.min(angle, Math.abs(360 - angle));
+  return (degrees / 180) * 3.141592653589793;
 }
 
 
