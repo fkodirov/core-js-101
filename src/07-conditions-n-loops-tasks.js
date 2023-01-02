@@ -450,11 +450,11 @@ function getMatrixProduct(m1, m2) {
   // const br = m2.length;
   const bc = m2[0].length;
   const m = new Array(ar);
-  for (let r = 0; r < ar; r = +1) {
+  for (let r = 0; r < ar; r += 1) {
     m[r] = new Array(bc);
-    for (let c = 0; c < bc; c = +1) {
+    for (let c = 0; c < bc; c += 1) {
       m[r][c] = 0;
-      for (let i = 0; i < ac; i = +1) {
+      for (let i = 0; i < ac; i += 1) {
         m[r][c] += m1[r][i] * m2[i][c];
       }
     }
